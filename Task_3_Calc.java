@@ -16,18 +16,7 @@ public class Task_3_Calc {
     public static void main(String[] args) throws IOException {
         Deque s = new ArrayDeque();
         File file = new File("log.txt");
-        /*String filename = "log.txt";
-        Path path = Paths.get(filename);*/
         FileWriter fileWriter = new FileWriter(file, true);
-        /*FileWriter fileWriter = null;*/
-        /*        FileReader fileReader = new FileReader(file);
-        while(fileReader.markSupported())
-        {
-            s.add(fileReader.read());
-        }
-        fileReader.close();*/
-/*        BufferedReader br = Files.newBufferedReader(path);
-        s.add(br.readLine());*/
         Scanner scanner = new Scanner(System.in);
         Calc calc = new Calc();
         try {
@@ -46,8 +35,8 @@ public class Task_3_Calc {
                     int b = Integer.parseInt(scanner.nextLine());
                     calc.SetItem(b);
                     var result = calc.GetValue();
-                    System.out.println(result);
-                    fileWriter.append(a + op + b + " = " + result + '\n');
+                    System.out.println(a + " " + String.valueOf(op) + " " + b + " = " + result);
+                    fileWriter.append(a + " " + String.valueOf(op) + " " + b + " = " + result + '\n');
                     s.add(a + " + " + b + " = " + result);
                     fileWriter.flush();
                     fileWriter.close();
@@ -56,8 +45,11 @@ public class Task_3_Calc {
                     System.out.println(s);
                 }
                 else if (command.equals("remove")){
-                    s.removeLast();
+                    s.pollLast();
                     System.out.println(s);
+                }
+                else if (command.equals("exit")) {
+                    break;
                 }
             }
         }
